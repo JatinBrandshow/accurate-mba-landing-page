@@ -1,208 +1,207 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
+import { ChevronDown, ChevronUp, HelpCircle, Search } from "lucide-react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const FAQ = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.2 });
+
     const [openIndex, setOpenIndex] = useState(null);
+    const [search, setSearch] = useState("");
+    const [activeCategory, setActiveCategory] = useState("All");
+
+    const categories = ["All", "Admissions", "Fees", "Placements", "Campus"];
 
     const faqs = [
         {
+            category: "Admissions",
+            popular: true,
             question: "What is the duration of the MBA program?",
-            answer: "The MBA program is a 2-year full-time course divided into 4 semesters. Each semester is approximately 6 months long, including examinations.",
+            answer: "The MBA program is a 2-year full-time course divided into 4 semesters, each lasting approximately 6 months including examinations.",
         },
         {
+            category: "Admissions",
             question: "Which entrance exams are accepted?",
-            answer: "We accept scores from CAT, MAT, CMAT, XAT, and ATMA. Additionally, we conduct our own institutional entrance test for candidates who haven't appeared for these exams.",
+            answer: "We accept CAT, MAT, CMAT, XAT, and ATMA scores. Candidates without these can appear for our institutional entrance test.",
         },
         {
+            category: "Admissions",
             question: "Is work experience mandatory for admission?",
-            answer: "Work experience is not mandatory but is considered during the selection process. Fresh graduates are welcome to apply, and working professionals with experience are given preference in certain specializations.",
+            answer: "Work experience is not mandatory. Fresh graduates are welcome, though candidates with experience may get preference in certain specializations.",
         },
         {
+            category: "Fees",
+            popular: true,
             question: "What is the fee structure?",
-            answer: "The total program fee is competitive and can be paid in installments. Detailed fee structure is provided during the admission process. We also offer scholarships and education loan assistance.",
+            answer: "The program fee is competitive and payable in installments. Scholarships and education loan assistance are also available.",
         },
         {
+            category: "Placements",
+            popular: true,
             question: "What are the placement opportunities?",
-            answer: "We have a dedicated placement cell with strong industry connections. Our placement rate is 95%+ with an average package of 12 LPA. Top recruiters include TCS, Infosys, HDFC Bank, Amazon, and many more.",
+            answer: "We have a dedicated placement cell with a 95%+ placement rate. Average packages go up to 12 LPA with recruiters like TCS, Infosys, Amazon, and HDFC Bank.",
         },
         {
+            category: "Admissions",
             question: "Can I pursue MBA while working?",
-            answer: "This is a full-time program that requires regular attendance. However, we also offer weekend and executive MBA programs for working professionals. Please contact our admissions office for more details.",
+            answer: "This is a full-time MBA requiring regular attendance. However, executive and weekend MBA options are available for working professionals.",
         },
         {
+            category: "Campus",
             question: "Are hostel facilities available?",
-            answer: "Yes, we provide separate hostel facilities for boys and girls with all modern amenities including Wi-Fi, mess, gymnasium, and recreation facilities.",
+            answer: "Yes, separate hostels for boys and girls are available with Wi-Fi, mess, gym, and recreational facilities.",
         },
         {
-            question: "What is the specialization selection process?",
-            answer: "Students can choose their specialization at the end of the first semester based on their interests and career goals. We offer counseling sessions to help students make informed decisions.",
+            category: "Admissions",
+            question: "How is specialization selected?",
+            answer: "Specializations are chosen after the first semester based on interest, performance, and career counseling sessions.",
         },
     ];
 
+    const filteredFaqs = faqs.filter((faq) => {
+        const matchesSearch =
+            faq.question.toLowerCase().includes(search.toLowerCase()) ||
+            faq.answer.toLowerCase().includes(search.toLowerCase());
+
+        const matchesCategory = activeCategory === "All" || faq.category === activeCategory;
+
+        return matchesSearch && matchesCategory;
+    });
+
     return (
-        <>
-            <section
-                id="faq"
-                ref={ref}
-                className="relative overflow-hidden bg-linear-to-br from-gray-50 via-white to-blue-50 py-20"
-            >
-                {/* Background Decoration */}
-                <div className="absolute inset-0 opacity-30">
-                    <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-linear-to-r from-blue-300 to-purple-300 blur-3xl" />
-                    <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-linear-to-r from-purple-300 to-pink-300 blur-3xl" />
+        <section
+            ref={ref}
+            id="faq"
+            className="relative overflow-hidden bg-linear-to-br from-gray-50 via-white to-blue-50 py-20"
+        >
+            {/* Background Glow */}
+            <div className="absolute inset-0 opacity-30">
+                <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-linear-to-r from-blue-300 to-purple-300 blur-3xl" />
+                <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-linear-to-r from-purple-300 to-pink-300 blur-3xl" />
+            </div>
+
+            <div className="relative z-10 mx-auto max-w-7xl px-4">
+                {/* Heading */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="mb-14 text-center"
+                >
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-6 py-2 text-sm text-white">
+                        <HelpCircle className="h-4 w-4" />
+                        Got Questions?
+                    </div>
+
+                    <h2 className="mb-4 text-4xl md:text-5xl text-gray-900">
+                        Frequently Asked{" "}
+                        <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            Questions
+                        </span>
+                    </h2>
+
+                    <p className="text-xl text-gray-600">Everything you need to know about our MBA program</p>
+                </motion.div>
+
+                <div className="mb-12 flex flex-col items-center gap-6">
+                    {/* Search */}
+                    <div className="relative w-full max-w-2xl">
+                        <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" />
+                        <input
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="Search questions..."
+                            className="w-full rounded-2xl border border-gray-200 py-4 pl-12 pr-6 text-lg"
+                        />
+                    </div>
+
+                    {/* Categories */}
+                    <div className="flex flex-wrap justify-center gap-3">
+                        {categories.map((cat) => (
+                            <button
+                                key={cat}
+                                onClick={() => setActiveCategory(cat)}
+                                className={`rounded-full px-5 py-2 text-sm transition ${
+                                    activeCategory === cat
+                                        ? "bg-blue-600 text-white"
+                                        : "border bg-white text-gray-600 hover:bg-gray-50"
+                                }`}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-                    {/* Heading */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.6 }}
-                        className="mb-16 text-center"
+                {/* Expand / Collapse */}
+                <div className="mb-6 text-right">
+                    <button
+                        onClick={() => setOpenIndex(openIndex === "all" ? null : "all")}
+                        className="text-sm text-blue-600 underline"
                     >
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                            transition={{ duration: 0.5 }}
-                            className="mb-4 inline-flex items-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-6 py-2 text-sm text-white"
-                        >
-                            <HelpCircle className="h-4 w-4" />
-                            <span>Got Questions?</span>
-                        </motion.div>
+                        {openIndex === "all" ? "Collapse all" : "Expand all"}
+                    </button>
+                </div>
 
-                        <h2 className="mb-4 text-4xl md:text-5xl text-gray-900">
-                            Frequently Asked{" "}
-                            <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                Questions
-                            </span>
-                        </h2>
+                {/* FAQ List */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {filteredFaqs.map((faq, index) => {
+                        const isOpen = openIndex === index || openIndex === "all";
 
-                        <p className="text-xl text-gray-600">Find answers to common questions about our MBA program</p>
-                    </motion.div>
-
-                    {/* FAQ List */}
-                    <div className="space-y-4">
-                        {faqs.map((faq, index) => (
+                        return (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, x: -30 }}
                                 animate={isInView ? { opacity: 1, x: 0 } : {}}
-                                transition={{ delay: index * 0.08, duration: 0.5 }}
-                                whileHover={{ scale: 1.02 }}
-                                className="group relative"
+                                transition={{ delay: index * 0.05 }}
+                                className="rounded-2xl bg-white shadow-md hover:shadow-xl transition"
                             >
-                                <div className="overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-xl">
-                                    {/* Gradient Border */}
-                                    <motion.div
-                                        className="absolute inset-0 bg-linear-to-r from-blue-600 to-purple-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                                        style={{ padding: "2px" }}
-                                    >
-                                        <div className="h-full rounded-2xl bg-white" />
-                                    </motion.div>
-
-                                    <div className="relative">
-                                        <button
-                                            onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                            className="flex w-full items-center justify-between rounded-2xl px-6 py-5 text-left transition-all duration-300 hover:bg-linear-to-r hover:from-blue-50 hover:to-purple-50"
-                                        >
-                                            <span className="flex items-center gap-3 pr-4 text-lg text-gray-900">
-                                                <motion.div
-                                                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-blue-600 to-purple-600 text-sm text-white shadow-lg"
-                                                    animate={{
-                                                        rotate: openIndex === index ? 180 : 0,
-                                                    }}
-                                                    transition={{ duration: 0.3 }}
-                                                >
-                                                    {index + 1}
-                                                </motion.div>
-                                                {faq.question}
-                                            </span>
-
-                                            <motion.div
-                                                animate={{
-                                                    rotate: openIndex === index ? 180 : 0,
-                                                }}
-                                                transition={{ duration: 0.3 }}
-                                            >
-                                                {openIndex === index ? (
-                                                    <ChevronUp className="h-6 w-6 text-blue-600" />
-                                                ) : (
-                                                    <ChevronDown className="h-6 w-6 text-gray-400" />
-                                                )}
-                                            </motion.div>
-                                        </button>
-
-                                        <AnimatePresence>
-                                            {openIndex === index && (
-                                                <motion.div
-                                                    initial={{ height: 0, opacity: 0 }}
-                                                    animate={{
-                                                        height: "auto",
-                                                        opacity: 1,
-                                                    }}
-                                                    exit={{ height: 0, opacity: 0 }}
-                                                    transition={{ duration: 0.3 }}
-                                                    className="overflow-hidden"
-                                                >
-                                                    <motion.div
-                                                        initial={{ y: -10 }}
-                                                        animate={{ y: 0 }}
-                                                        exit={{ y: -10 }}
-                                                        className="px-6 pb-6 text-gray-600 leading-relaxed"
-                                                    >
-                                                        <div className="border-l-2 border-linear-to-b from-blue-600 to-purple-600 pl-11 pt-2">
-                                                            {faq.answer}
-                                                        </div>
-                                                    </motion.div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* CTA */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.8, duration: 0.5 }}
-                        className="mt-12 text-center"
-                    >
-                        <div className="rounded-2xl border border-blue-100 bg-linear-to-r from-blue-50 to-purple-50 p-8">
-                            <p className="mb-4 text-lg text-gray-700">Still have questions?</p>
-
-                            <motion.button
-                                onClick={() => {
-                                    const el = document.getElementById("apply");
-                                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                                }}
-                                className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-blue-600 to-purple-600 px-8 py-3 text-white transition-all duration-300 hover:shadow-lg"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                Contact our admissions team
-                                <motion.span
-                                    animate={{ x: [0, 5, 0] }}
-                                    transition={{
-                                        duration: 1.5,
-                                        repeat: Infinity,
-                                    }}
+                                <button
+                                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                                    className="flex w-full items-center justify-between px-6 py-5 text-left"
                                 >
-                                    →
-                                </motion.span>
-                            </motion.button>
-                        </div>
-                    </motion.div>
+                                    <div className="flex items-center gap-3 text-lg text-gray-900">
+                                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-blue-600 to-purple-600 text-sm text-white">
+                                            {index + 1}
+                                        </span>
+                                        {faq.question}
+                                        {faq.popular && (
+                                            <span className="ml-2 rounded-full bg-yellow-100 px-3 py-1 text-xs text-yellow-700">
+                                                Most Asked
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {isOpen ? (
+                                        <ChevronUp className="h-6 w-6 text-blue-600" />
+                                    ) : (
+                                        <ChevronDown className="h-6 w-6 text-gray-400" />
+                                    )}
+                                </button>
+
+                                <AnimatePresence>
+                                    {isOpen && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            className="overflow-hidden"
+                                        >
+                                            <div className="relative px-6 pb-6 text-gray-600 leading-relaxed">
+                                                <div className="absolute left-0 top-0 h-full w-1 bg-linear-to-b from-blue-600 to-purple-600" />
+                                                <div className="pl-6">{faq.answer}</div>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </motion.div>
+                        );
+                    })}
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
 };
 
