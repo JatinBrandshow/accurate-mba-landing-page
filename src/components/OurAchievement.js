@@ -61,7 +61,6 @@ const OurAchievement = () => {
                 animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             />
-
             <motion.div
                 className="absolute bottom-0 right-1/4 w-96 h-96 bg-linear-to-r from-emerald-500/20 to-teal-500/20 rounded-full blur-3xl"
                 animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.5, 0.3] }}
@@ -105,7 +104,7 @@ const OurAchievement = () => {
                     </p>
                 </motion.div>
 
-                {/* Stats Cards */}
+                {/* Cards */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     {stats.map((stat, index) => (
                         <CounterCard key={index} {...stat} delay={index * 0.15} isInView={isInView} />
@@ -149,13 +148,40 @@ function CounterCard({ icon: Icon, end, suffix, label, color, delay, isInView })
             className="relative group"
             style={{ perspective: "1000px" }}
         >
-            <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500">
+            {/* Glow */}
+            <motion.div
+                className={`absolute inset-0 bg-linear-to-r ${color} blur-2xl opacity-0 group-hover:opacity-70 rounded-3xl`}
+                animate={{ scale: [1, 1.1, 1], opacity: [0, 0.4, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full hover:bg-white/10 hover:border-white/30 transition-all duration-500">
                 {/* Icon */}
-                <div
-                    className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-linear-to-br ${color} flex items-center justify-center`}
+                <motion.div
+                    className="relative w-20 h-20 mx-auto mb-6"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.8, type: "spring" }}
                 >
-                    <Icon className="w-10 h-10 text-white" />
-                </div>
+                    <motion.div
+                        className="absolute inset-0 rounded-2xl border-4 border-transparent"
+                        style={{
+                            background: `linear-gradient(white, white) padding-box, linear-gradient(135deg, transparent, transparent) border-box`,
+                        }}
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    />
+
+                    <div
+                        className={`absolute inset-1 rounded-2xl bg-linear-to-br ${color} flex items-center justify-center shadow-2xl`}
+                    >
+                        <Icon className="w-10 h-10 text-white" />
+                    </div>
+                    <motion.div
+                        className={`absolute inset-1 rounded-2xl bg-linear-to-br ${color}`}
+                        animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                    />
+                </motion.div>
 
                 {/* Counter */}
                 <div className="text-center">
@@ -164,13 +190,31 @@ function CounterCard({ icon: Icon, end, suffix, label, color, delay, isInView })
                         initial={{ scale: 1.2, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.3 }}
-                        className={`text-5xl md:text-6xl font-bold bg-linear-to-r ${color} bg-clip-text text-transparent`}
+                        className="text-5xl md:text-6xl font-bold"
                     >
-                        {count}
-                        {suffix}
+                        <span className={`bg-linear-to-r ${color} bg-clip-text text-transparent`}>
+                            {count}
+                            {suffix}
+                        </span>
                     </motion.div>
                     <div className="text-gray-300 mt-2 font-medium">{label}</div>
                 </div>
+
+                {/* Bottom Line */}
+                <motion.div
+                    className={`absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r ${color} rounded-b-3xl`}
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                />
+
+                {/* Dots */}
+                <div
+                    className={`absolute top-4 right-4 w-3 h-3 rounded-full bg-linear-to-r ${color} opacity-50 group-hover:opacity-100`}
+                />
+                <div
+                    className={`absolute bottom-4 left-4 w-2 h-2 rounded-full bg-linear-to-r ${color} opacity-50 group-hover:opacity-100`}
+                />
             </div>
         </motion.div>
     );
