@@ -12,14 +12,14 @@ export const HomePage = () => {
     return (
         <>
             <MainSection />
-            {/* <OurAchievement /> */}
-            {/* <WhyChooseUs /> */}
-            {/* <Specialization /> */}
-            {/* <OurStrengths /> */}
-            {/* <AdmissionProcess /> */}
-            {/* <OurAlumni /> */}
+            <OurAchievement />
+            <WhyChooseUs />
+            <Specialization />
+            <OurStrengths />
+            <AdmissionProcess />
+            <OurAlumni />
             <FAQ />
-            {/* <ContactUs /> */}
+            <ContactUs />
         </>
     );
 };
