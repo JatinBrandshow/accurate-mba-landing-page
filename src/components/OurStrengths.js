@@ -58,7 +58,7 @@ const OurStrengths = () => {
 
                                 {/* Floating Sparkle */}
                                 <motion.div
-                                    className="absolute -right-6 -top-6 rounded-2xl bg-linear-to-br from-blue-600 to-purple-600 p-4 text-white shadow-xl"
+                                    className="absolute -right-6 -top-6 rounded-2xl bg-linear-to-br from-blue-600 to-purple-600 p-4 text-white shadow-xl z-20"
                                     initial={{ opacity: 0, scale: 0 }}
                                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
                                     transition={{ delay: 0.5, duration: 0.5 }}
