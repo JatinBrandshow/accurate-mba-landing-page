@@ -12,51 +12,61 @@ const FAQ = () => {
     const [search, setSearch] = useState("");
     const [activeCategory, setActiveCategory] = useState("All");
 
-    const categories = ["All", "Admissions", "Fees", "Placements", "Campus"];
+    const categories = ["All", "Admissions", "Fees", "Curriculum", "Placements", "Campus"];
 
     const faqs = [
         {
             category: "Admissions",
             popular: true,
-            question: "What is the duration of the MBA program?",
-            answer: "The MBA program is a 2-year full-time course divided into 4 semesters, each lasting approximately 6 months including examinations.",
+            question: "What is the duration of the BCA program?",
+            answer: "The BCA program is a 3-year full-time undergraduate course divided into 6 semesters, with each semester lasting approximately 6 months including examinations.",
         },
         {
             category: "Admissions",
-            question: "Which entrance exams are accepted?",
-            answer: "We accept CAT, MAT, CMAT, XAT, and ATMA scores. Candidates without these can appear for our institutional entrance test.",
+            question: "What are the eligibility criteria for BCA admission?",
+            answer: "Candidates must have completed 10+2 from a recognized board with Mathematics as a compulsory subject. Students from Science, Commerce, or Arts streams are eligible.",
         },
         {
             category: "Admissions",
-            question: "Is work experience mandatory for admission?",
-            answer: "Work experience is not mandatory. Fresh graduates are welcome, though candidates with experience may get preference in certain specializations.",
+            question: "Is there an entrance exam for BCA?",
+            answer: "Admission is primarily merit-based. However, some seats may require appearing for an institutional entrance test followed by counseling.",
         },
         {
             category: "Fees",
             popular: true,
-            question: "What is the fee structure?",
-            answer: "The program fee is competitive and payable in installments. Scholarships and education loan assistance are also available.",
+            question: "What is the fee structure for the BCA program?",
+            answer: "The BCA program fee is affordable and can be paid semester-wise. Scholarships and education loan assistance are available for eligible students.",
+        },
+        {
+            category: "Curriculum",
+            question: "What subjects are covered in the BCA course?",
+            answer: "The curriculum includes Programming in C, C++, Java, Python, Data Structures, Database Management Systems, Operating Systems, Web Development, and Software Engineering.",
         },
         {
             category: "Placements",
             popular: true,
-            question: "What are the placement opportunities?",
-            answer: "We have a dedicated placement cell with a 95%+ placement rate. Average packages go up to 12 LPA with recruiters like TCS, Infosys, Amazon, and HDFC Bank.",
+            question: "What placement opportunities are available after BCA?",
+            answer: "Our dedicated placement cell provides excellent opportunities with recruiters like TCS, Wipro, Infosys, HCL, and Tech Mahindra. Students are placed as Software Developers, Web Developers, and System Analysts.",
         },
         {
-            category: "Admissions",
-            question: "Can I pursue MBA while working?",
-            answer: "This is a full-time MBA requiring regular attendance. However, executive and weekend MBA options are available for working professionals.",
+            category: "Placements",
+            question: "What is the average salary package after BCA?",
+            answer: "The average salary package ranges from 3 to 6 LPA, depending on skills, performance, and the recruiting company.",
+        },
+        {
+            category: "Curriculum",
+            question: "Does the BCA program include practical training?",
+            answer: "Yes, the program emphasizes hands-on learning through labs, live projects, internships, and industry-oriented workshops.",
         },
         {
             category: "Campus",
-            question: "Are hostel facilities available?",
-            answer: "Yes, separate hostels for boys and girls are available with Wi-Fi, mess, gym, and recreational facilities.",
+            question: "Are hostel facilities available for BCA students?",
+            answer: "Yes, separate hostel facilities for boys and girls are available with Wi-Fi, mess, study rooms, and recreational facilities.",
         },
         {
-            category: "Admissions",
-            question: "How is specialization selected?",
-            answer: "Specializations are chosen after the first semester based on interest, performance, and career counseling sessions.",
+            category: "Curriculum",
+            question: "Can I pursue MCA or higher studies after BCA?",
+            answer: "Absolutely. After completing BCA, students can pursue MCA, MBA, M.Sc. IT, or specialized certifications in emerging technologies.",
         },
     ];
 
