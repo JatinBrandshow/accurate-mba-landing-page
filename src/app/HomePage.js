@@ -1,4 +1,5 @@
 import AdmissionProcess from "@/components/AdmissionProcess";
+import ContactUs from "@/components/ContactUs";
 import FAQ from "@/components/FAQ";
 import MainSection from "@/components/MainSection";
 import OurAchievement from "@/components/OurAchievement";
@@ -18,6 +19,7 @@ export const HomePage = () => {
             <AdmissionProcess />
             <OurAlumni />
             <FAQ />
+            <ContactUs />
         </>
     );
 };
