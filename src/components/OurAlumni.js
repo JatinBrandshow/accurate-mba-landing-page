@@ -34,7 +34,7 @@ const OurAlumni = () => {
 
     return (
         <>
-            <section ref={ref} className="relative overflow-hidden bg-white py-20">
+            <section ref={ref} className="relative overflow-hidden bg-white py-10">
                 {/* Background Elements */}
                 <div className="absolute inset-0">
                     <div className="absolute left-10 top-20 h-72 w-72 rounded-full bg-linear-to-r from-blue-200 to-purple-200 blur-3xl opacity-20" />
@@ -58,7 +58,7 @@ const OurAlumni = () => {
                             Success Stories
                         </motion.div>
 
-                        <h2 className="mb-4 text-4xl md:text-5xl text-gray-900">
+                        <h2 className="mb-4 text-5xl text-gray-900 max-lg:text-3xl max-md:text-2xl max-sm:text-xl">
                             What Our{" "}
                             <span className="bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                                 Alumni Say
