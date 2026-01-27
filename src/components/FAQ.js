@@ -99,7 +99,7 @@ const FAQ = () => {
     };
 
     return (
-        <section ref={ref} id="faq" className="relative overflow-hidden bg-slate-50 py-24">
+        <section ref={ref} id="faq" className="relative overflow-hidden bg-slate-50 py-10">
             {/* Soft Ambient Background */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-0 left-1/4 h-100 w-100 rounded-full bg-blue-100/30 blur-[100px]" />
@@ -112,12 +112,12 @@ const FAQ = () => {
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     className="mb-16 text-center"
                 >
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                    <div className="mb-2.5 inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                         <HelpCircle className="h-4 w-4" />
                         Support Center
                     </div>
                     <h2 className="mb-6 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
-                        Have <span className="text-blue-600">Questions?</span> We have Answers
+                        Have <span className="text-blue-600">Questions?</span> We have Answers  
                     </h2>
                     <p className="mx-auto max-w-2xl text-lg text-slate-600">
                         Explore our comprehensive FAQ to find everything you need to know about the BCA program,
