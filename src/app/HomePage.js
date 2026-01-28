@@ -14,16 +14,16 @@ export const HomePage = () => {
     return (
         <>
             <MainSection />
-            <OurAchievement />
+            {/* <OurAchievement />
             <WhyChooseUs />
             <Specialization />
             <VideoSlider />
             <OurStrengths />
             <OurRecruiters />
-            <AdmissionProcess />
+            <AdmissionProcess /> */}
             <OurAlumni />
-            <FAQ />
-            <ContactUs />
+            {/* <FAQ />
+            <ContactUs /> */}
         </>
     );
 };
