@@ -53,19 +53,19 @@ const OurAlumni = () => {
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={isInView ? { opacity: 1, scale: 1 } : {}}
                             transition={{ duration: 0.5 }}
-                            className="mb-4 inline-block rounded-full bg-linear-to-r from-purple-600 to-pink-600 px-6 py-2 text-sm text-white"
+                            className="mb-3 inline-block rounded-full bg-linear-to-r from-purple-600 to-pink-600 px-6 py-2 text-sm text-white"
                         >
                             Success Stories
                         </motion.div>
 
-                        <h2 className="mb-4 text-5xl text-gray-900 max-lg:text-3xl max-md:text-2xl max-sm:text-xl">
+                        <h2 className="mb-3 text-5xl text-gray-900 max-lg:text-3xl max-md:text-2xl max-sm:text-xl">
                             What Our{" "}
                             <span className="bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                                 Alumni Say
                             </span>
                         </h2>
 
-                        <p className="mx-auto max-w-3xl text-xl text-gray-600">
+                        <p className="mx-auto max-w-3xl text-lg text-gray-600 max-lg:text-base max-md:text-base max-sm:text-sm">
                             Hear from our alumni who have transformed their careers through our MBA program
                         </p>
                     </motion.div>
